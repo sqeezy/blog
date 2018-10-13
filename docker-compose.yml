@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+
+  nginx-letsencrypt:
+    image: linuxserver/letsencrypt
+    
+    ports:
+      - 80:80
+      - 443:443
+    
+    volumes:
+      - $ServerConfig:/config
+    
+    environment: 
+      - EMAIL=$DomainMail
+      - URL=$Domain
+      - SUBDOMAINS=www 
+      - VALIDATION=tls-sni
+      - TZ=Berlin/Germany
+    
+    cap-add:
+      - NET_ADMIN
+  
+    links:
+       - ghost
+    
+    restart: always
+
+
+  ghost:
+    image: ghost:alpine
+
+    volumes:
+      - $GhostData:/var/lib/ghost/content
+
+    restart: always
