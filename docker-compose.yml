@@ -31,6 +31,8 @@ services:
   ghost:
     image: ghost:alpine
 
+    #eposes 2368
+
     volumes:
       - $GhostData:/var/lib/ghost/content
 
