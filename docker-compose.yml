@@ -11,7 +11,7 @@ services:
       - "443:443"
 
     volumes:
-      - type: "bin"
+      - type: "bind"
         source: ./certs
         target: /etc/nginx/certs
         read_only: true
@@ -27,12 +27,15 @@ services:
         target: /usr/share/nginx/html
 
     labels:
-     - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy
+     - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy"
 
 
   letsencrypt-companion:
     
     image: jrcs/letsencrypt-nginx-proxy-companion
+
+    links:
+      - nginx_proxy
 
     volumes:
       - type: "bind"
