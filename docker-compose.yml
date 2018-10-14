@@ -57,6 +57,7 @@ services:
     environment:
       - VIRTUAL_HOST=test.sqeezy.tech
       - LETSENCRYPT_HOST=test.sqeezy.tech
+      - LETSENCRYPT_EMAIL=info@antonherzog.com
 
 volumes:
   etc_nginx_vhost.d:
