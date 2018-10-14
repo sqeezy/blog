@@ -31,11 +31,11 @@ services:
 
 
   letsencrypt-companion:
-    
+
     image: jrcs/letsencrypt-nginx-proxy-companion
 
     links:
-      - nginx_proxy
+      - nginx-proxy
 
     volumes:
       - type: "bind"
@@ -55,7 +55,8 @@ services:
   whoami:
     image: jwilder/whoami
     environment:
-      - VIRTUAL_HOST=whoami.local
+      - VIRTUAL_HOST=test.sqeezy.tech
+      - LETSENCRYPT_HOST=test.sqeezy.tech
 
 volumes:
   etc_nginx_vhost.d:
