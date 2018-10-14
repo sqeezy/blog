@@ -20,10 +20,10 @@ services:
         target: /tmp/docker.sock
         read_only: true
       - type: "volume"
-        source: etc_nginx_vhost.d
-        target: "/etc/nginx/vhost.d"
+        source: "etc_nginx_vhost.d"
+        target: /etc/nginx/vhost.d"
       - type: "volume"
-        source: usr_share_nginx_html
+        source: "usr_share_nginx_html"
         target: /usr/share/nginx/html
 
     labels:
@@ -43,9 +43,11 @@ services:
         target: /var/run/docker.sock
         read_only: true
       - type: "volume"
-        source: etc_nginx_vhost.d
+        source: "etc_nginx_vhost.d"
+        target: /etc/nginx/vhost.d
       - type: "volume"
-        source: usr_share_nginx_html
+        source: "usr_share_nginx_html"
+        target: "/usr/share/nginx/html"
 
   whoami:
     image: jwilder/whoami
