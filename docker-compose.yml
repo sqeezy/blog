@@ -1,39 +1,57 @@
-version: '3'
+version: '3.7'
 
 services:
 
-  nginx-letsencrypt:
-    image: linuxserver/letsencrypt
-    
+  nginx-proxy:
+
+    image:  jwilder/nginx-proxy
+
     ports:
-      - 80:80
-      - 443:443
-    
-    volumes:
-      - $ServerConfig:/config
-    
-    environment: 
-      - EMAIL=$DomainMail
-      - URL=$Domain
-      - SUBDOMAINS=www 
-      - VALIDATION=tls-sni
-      - TZ=Berlin/Germany
-    
-    cap-add:
-      - NET_ADMIN
-  
-    links:
-       - ghost
-    
-    restart: always
-
-
-  ghost:
-    image: ghost:alpine
-
-    #eposes 2368
+      - "80:80"
+      - "443:443"
 
     volumes:
-      - $GhostData:/var/lib/ghost/content
+      - type: "bin"
+        source: ./certs
+        target: /etc/nginx/certs
+        read_only: true
+      - type: "bind"
+        source: /var/run/docker.sock
+        target: /tmp/docker.sock
+        read_only: true
+      - type: "volume"
+        source: etc_nginx_vhost.d
+        target: "/etc/nginx/vhost.d"
+      - type: "volume"
+        source: usr_share_nginx_html
+        target: /usr/share/nginx/html
 
-    restart: always
+    labels:
+     - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy
+
+
+  letsencrypt-companion:
+    
+    image: jrcs/letsencrypt-nginx-proxy-companion
+
+    volumes:
+      - type: "bind"
+        source: ./certs
+        target: /etc/nginx/certs
+      - type: "bind"
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+        read_only: true
+      - type: "volume"
+        source: etc_nginx_vhost.d
+      - type: "volume"
+        source: usr_share_nginx_html
+
+  whoami:
+    image: jwilder/whoami
+    environment:
+      - VIRTUAL_HOST=whoami.local
+
+volumes:
+  etc_nginx_vhost.d:
+  usr_share_nginx_html:
