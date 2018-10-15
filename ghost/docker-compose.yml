@@ -4,7 +4,7 @@ services:
   ghost:
     image: ghost:alpine
     environment:
-      - url=test.sqeezy.tech
+      - url=https://test.sqeezy.tech
       - VIRTUAL_HOST=test.sqeezy.tech
       - LETSENCRYPT_HOST=test.sqeezy.tech
       - LETSENCRYPT_EMAIL=admin@antonherzog.com
