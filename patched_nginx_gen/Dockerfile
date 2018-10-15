@@ -1,2 +1,2 @@
-FROM jrcs/letsencrypt-nginx-proxy-companion
+FROM jwilder/docker-gen
 COPY ./nginx.tmpl /etc/docker-gen/templates/nginx.tmpl
