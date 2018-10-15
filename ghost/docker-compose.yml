@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  ghost:
+    environment:
+      - url=test.sqeezy.tech
+      - VIRTUAL_HOST=test.sqeezy.tech
+      - LETSENCRYPT_HOST=test.sqeezy.tech
+      - LETSENCRYPT_EMAIL=admin@antonherzog.com
+    networks:
+      - nginx-proxy
+
+networks:
+  nginx-proxy:
+    external: true
