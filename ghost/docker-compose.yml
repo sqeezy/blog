@@ -3,6 +3,8 @@ version: '3'
 services:
   ghost:
     image: ghost:alpine
+    expose:
+      - "2368"
     environment:
       - url=https://test.sqeezy.tech
       - VIRTUAL_HOST=test.sqeezy.tech
