@@ -6,9 +6,9 @@ services:
     expose:
       - "2368"
     environment:
-      - url=https://test.sqeezy.tech
-      - VIRTUAL_HOST=test.sqeezy.tech
-      - LETSENCRYPT_HOST=test.sqeezy.tech
+      - url=https://$DOMAIN
+      - VIRTUAL_HOST=$DOMAIN
+      - LETSENCRYPT_HOST=$DOMAIN
       - LETSENCRYPT_EMAIL=admin@antonherzog.com
     networks:
       - nginx-proxy
