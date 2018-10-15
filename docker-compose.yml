@@ -53,7 +53,7 @@ services:
         target: "/usr/share/nginx/html"
 
   whoami:
-    image: jwilder/whoami
+    image: ghost
     environment:
       - VIRTUAL_HOST=test.sqeezy.tech
       - LETSENCRYPT_HOST=test.sqeezy.tech
