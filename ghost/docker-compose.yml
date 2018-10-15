@@ -3,6 +3,7 @@ version: '3'
 services:
   ghost:
     image: ghost:alpine
+    container_name: ghost-blog
     volumes:
       - $GHOSTCONTENT:/var/lib/ghost/content
     expose:
