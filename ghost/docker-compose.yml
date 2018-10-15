@@ -3,6 +3,8 @@ version: '3'
 services:
   ghost:
     image: ghost:alpine
+    volumes:
+      - $GHOSTCONTENT:/var/lib/ghost/content
     expose:
       - "2368"
     environment:
