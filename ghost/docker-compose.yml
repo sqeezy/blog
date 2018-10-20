@@ -15,6 +15,7 @@ services:
       - LETSENCRYPT_EMAIL=admin@antonherzog.com
     networks:
       - nginx-proxy
+    restart: always
 
 networks:
   nginx-proxy:
