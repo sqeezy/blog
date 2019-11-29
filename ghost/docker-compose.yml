@@ -13,6 +13,10 @@ services:
       - VIRTUAL_HOST=$DOMAIN
       - LETSENCRYPT_HOST=$DOMAIN
       - LETSENCRYPT_EMAIL=admin@antonherzog.com
+      - mail__transport=SMTP
+      - mail__options__service=$SMTPSERVICE
+      - mail__options__auth__user=$SMTPUSER
+      - mail__options__auth__pass=$SMTPPASS
     networks:
       - nginx-proxy
     restart: always
